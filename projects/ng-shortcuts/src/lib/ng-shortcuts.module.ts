@@ -6,7 +6,7 @@ import { ShortcutManager } from './managers/shortcut-manager.service';
     {
       provide: APP_INITIALIZER,
       useFactory: (manager: ShortcutManager) => () => {
-        console.info('Shortcut manager initialized', manager)
+        console.debug('Shortcut manager initialized', manager)
       },
       deps: [ShortcutManager],
       multi: true

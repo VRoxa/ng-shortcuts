@@ -2,6 +2,7 @@ import { DOCUMENT } from "@angular/common";
 import { Inject, Injectable } from "@angular/core";
 import { EventManager } from "@angular/platform-browser";
 import { Observable, TeardownLogic } from "rxjs";
+import { StaticShortcutManager } from "./static-shortcut-manager.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class ShortcutManager {
     private manager: EventManager,
     @Inject(DOCUMENT) private document: Document
   ) {
-    console.log('Constructing manager');
+    console.debug('Constructing manager');
+    StaticShortcutManager.instance = this;
   }
   
   public registerGlobal = (...keys: string[]): Observable<Event> => {
