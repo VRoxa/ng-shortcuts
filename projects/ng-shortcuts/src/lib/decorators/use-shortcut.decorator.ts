@@ -1,5 +1,6 @@
 import { Subscription } from "rxjs";
 import { ListenerConstructor, StaticShortcutManager } from "../managers/static-shortcut-manager.service";
+import { isValidLifehookFn } from "../utils/utils";
 
 export interface SubscriptionOptions {
   unsubscribe: boolean;
@@ -18,11 +19,6 @@ export function UseShortcuts<
   listener: TListener,
   options: SubscriptionOptions = { unsubscribe: false }
 ) {
-
-  const isValidLifehookFn = (fn: unknown): fn is () => void => {
-    return !!fn && typeof fn === 'function';
-  }
-
   // The prototype is the decorated  component instance
   return function({ prototype }: Function) {
     // Keep the original lifehook functions
