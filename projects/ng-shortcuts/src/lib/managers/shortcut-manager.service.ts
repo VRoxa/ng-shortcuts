@@ -27,9 +27,11 @@ export class ShortcutManager {
 
     return new Observable<Event>(observer => {
       const handle = (event: Event) => {
-        event.stopPropagation();
-        event.preventDefault();
-        observer.next(event);
+        if (this.canHandle(event)) {
+          event.stopPropagation();
+          event.preventDefault();
+          observer.next(event);
+        }
       }
 
       const dispose = this.manager.addEventListener(
@@ -46,5 +48,12 @@ export class ShortcutManager {
   // And all the keys separated by dots.
   private eventify = (...keys: string[]) => {
     return `keydown.${keys.join('.')}`;
+  }
+
+  private canHandle = ({ target }: Event) => {
+    return (
+      !StaticShortcutManager.muted &&
+      !StaticShortcutManager.excludedElements.includes(target)
+    );
   }
 }
