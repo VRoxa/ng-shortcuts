@@ -1,3 +1,11 @@
 
-Press <kbd>O</kbd> and check the browser devtools console! <br>
-Try pressing <kbd>SHIFT</kbd> + <kbd>O</kbd> too.
+<div class="content">
+  <p>
+    Press <kbd>O</kbd> and check the browser devtools console! <br>
+    Try pressing <kbd>SHIFT</kbd> + <kbd>O</kbd> too.
+  </p>
+</div>
+
+<button (click)="toggleMute()">Toggle shortcuts mute.</button>
+
+<app-muted *ngIf="muted"></app-muted>

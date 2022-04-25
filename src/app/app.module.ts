@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgShortcutsModule } from 'projects/ng-shortcuts/src/public-api';
 
 import { AppComponent } from './app.component';
+import { MutedComponent } from './muted.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MutedComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,8 @@ import { AppListener } from './listeners/app.listener';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  public muted: boolean = false;
   
   public sayHello = () => {
     console.info('Hello 🙋‍♂️');
@@ -16,5 +18,9 @@ export class AppComponent {
 
   public sayGoodbye = () => {
     console.info('Goodbye 🙋‍♂️');
+  }
+
+  public toggleMute = () => {
+    this.muted = !this.muted;
   }
 }
