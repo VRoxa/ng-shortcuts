@@ -1,16 +1,16 @@
-import { NgModule } from '@angular/core';
-import { NgShortcutsComponent } from './ng-shortcuts.component';
-
-
+import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { ShortcutManager } from './managers/shortcut-manager.service';
 
 @NgModule({
-  declarations: [
-    NgShortcutsComponent
-  ],
-  imports: [
-  ],
-  exports: [
-    NgShortcutsComponent
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (manager: ShortcutManager) => () => {
+        console.info('Shortcut manager initialized', manager)
+      },
+      deps: [ShortcutManager],
+      multi: true
+    }
   ]
 })
 export class NgShortcutsModule { }
