@@ -22,8 +22,7 @@ export function UseShortcuts<
   // The prototype is the decorated  component instance
   return function({ prototype }: Function) {
     // Keep the original lifehook functions
-    const { ngOnInit } = prototype;
-    const { ngOnDestroy } = prototype;
+    const { ngOnInit, ngOnDestroy } = prototype;
 
     let subscription: Subscription;
 

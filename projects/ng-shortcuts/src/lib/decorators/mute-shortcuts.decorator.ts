@@ -10,8 +10,8 @@ type Constructor<T> = new (...args: any[]) => T;
  * @param component The decorated  component instance.
  */
 export function MuteShortcuts<TComponent>({ prototype }: Constructor<TComponent>) {
-  const { ngOnInit } = prototype;
-  const { ngOnDestroy } = prototype;
+  
+  const { ngOnInit, ngOnDestroy } = prototype;
 
   // Override the init lifehook
   // to mute any listener.
