@@ -9,10 +9,9 @@ export class DelegatedShortcutListener<TComponent, TEvent> extends ShortcutListe
   
   constructor(
     handle: (component: TComponent, event: TEvent) => void,
-    shortcuts: Shortcut<TEvent>[],
-    manager: ShortcutManager,
+    shortcuts: Shortcut<TEvent>[]
   ) {
-    super(manager);
+    super();
     this.shortcuts = shortcuts;
     this._handle = handle;
   }

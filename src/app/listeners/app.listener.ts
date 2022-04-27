@@ -13,10 +13,6 @@ export class AppListener extends ShortcutListener<AppComponent, AppEvent> {
     { keys: ['shift', 'o'], event: AppEvent.Goodbye }
   ];
 
-  constructor(manager: ShortcutManager) {
-    super(manager);
-  }
-
   protected handle(component: AppComponent, event: AppEvent): void {
     switch (event) {
       case AppEvent.Hello:

@@ -12,9 +12,7 @@ export abstract class ShortcutListener<TComponent, TEvent> {
 
   protected abstract shortcuts: Shortcut<TEvent>[];
 
-  constructor(private manager: ShortcutManager) {
-    console.debug('Constructing listener, w/', manager);
-  }
+  public manager!: ShortcutManager;
 
   /**
    * Initializes the listener to start listening to the specified shortcuts.

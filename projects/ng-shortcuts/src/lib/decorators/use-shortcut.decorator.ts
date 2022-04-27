@@ -1,5 +1,6 @@
 import { Subscription } from "rxjs";
 import { ListenerConstructor, StaticShortcutManager } from "../managers/static-shortcut-manager.service";
+import { ShortcutListener } from "../shortcut-listener";
 import { isValidLifehookFn } from "../utils/utils";
 
 export interface SubscriptionOptions {
@@ -14,10 +15,10 @@ export interface SubscriptionOptions {
  */
 export function UseShortcuts<
   TComponent,
-  TListener extends ListenerConstructor<TComponent>
+  // TListener extends ListenerConstructor<TComponent>
 >(
-  listener: TListener,
-  options: SubscriptionOptions = { unsubscribe: false }
+  listener: ListenerConstructor<TComponent>,
+  options: SubscriptionOptions = { unsubscribe: true }
 ) {
   // The prototype is the decorated  component instance
   return function({ prototype }: Function) {

@@ -3,7 +3,7 @@ import { ShortcutListener } from "../shortcut-listener";
 import { ShortcutManager } from "./shortcut-manager.service";
 
 export type ListenerConstructor<TComponent, TEvent = any> =
-  new (manager: ShortcutManager) => ShortcutListener<TComponent, TEvent>;
+  new () => ShortcutListener<TComponent, TEvent>;
 
 export class StaticShortcutManager {
 
@@ -39,7 +39,8 @@ export class StaticShortcutManager {
     listener: TListener,
     component: TComponent
   ): Subscription => {
-    const instance = new listener(StaticShortcutManager.instance);
+    const instance = new listener();
+    instance.manager = StaticShortcutManager.instance;
     return instance.initialize(component);
   }
 }
