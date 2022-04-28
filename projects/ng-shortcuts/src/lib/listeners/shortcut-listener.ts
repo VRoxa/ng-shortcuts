@@ -1,6 +1,6 @@
 import { Observable, Subscription } from "rxjs";
-import { ShortcutManager } from "./managers/shortcut-manager.service";
-import { Shortcut } from "./shortcut.model";
+import { ShortcutManager } from "../managers/shortcut-manager.service";
+import { Shortcut } from "../shortcut.model";
 
 /**
  * Represents the abstract representation of a shortcut listener,
@@ -24,7 +24,7 @@ export abstract class ShortcutListener<TComponent, TEvent> {
   public initialize = (component: TComponent): Subscription => {
     const observable = new Observable<TEvent>(observer => {
       const subscriptions = this.shortcuts.map(({ keys, event }) => {
-        return this.manager.registerGlobal(...keys).subscribe(_ => {
+        return this.manager.registerGlobal(...keys).subscribe((_: Event) => {
           observer.next(event);
         });
       });

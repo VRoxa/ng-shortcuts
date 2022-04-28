@@ -1,20 +1,26 @@
 import { DelegatedShortcutListener } from "../listeners/delegated-shortcut-listener";
 import { ListenerConstructor } from "../managers/static-shortcut-manager.service";
-import { ShortcutListener } from "../shortcut-listener";
-import { Shortcut } from "../shortcut.model";
+import { ShortcutListener } from "../listeners/shortcut-listener";
 import { SubscriptionOptions, UseShortcuts } from "./use-shortcut.decorator";
+import { DelegateShortcut } from "../delegate-shortcut.model";
 
-export function UseDelegateShortcuts<TComponent, TEvent>(
-  shortcuts: Shortcut<TEvent>[],
-  handle: (component: TComponent, event: TEvent) => void,
+export function UseDelegateShortcuts<TComponent>(
+  delegateShortcuts: DelegateShortcut<TComponent>[],
   options: SubscriptionOptions = { unsubscribe: true }
 ) {
-
+  // Bind the DelegatedShortcutListener constructor function
+  // witb predefined arguments.
+  // Get the result, which is a parameterless DelegatedShortcutListener constructor
+  // that can be passed to the UseShortcuts decorator.
+  // The DelegatedShortcutListener instance will be created by the UseShorcuts decorator.
   const factory: ListenerConstructor<TComponent> = DelegatedShortcutListener.bind<
-    (component: TComponent, event: TEvent) => void, 
-    Shortcut<TEvent>[], 
-    never,
-    ShortcutListener<TComponent, TEvent>
-  >(null, handle, shortcuts);
+    DelegateShortcut<TComponent>[], // Predefined adgument type (A0)
+    never, // List of arguments to be defined (A extends any[])
+    ShortcutListener<TComponent, number> // Return type (R)
+  >(
+    null,
+    delegateShortcuts
+  );
+
   return UseShortcuts<TComponent>(factory, options);
 }

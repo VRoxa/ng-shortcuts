@@ -1,6 +1,6 @@
 import { Subscription } from "rxjs";
 import { ListenerConstructor, StaticShortcutManager } from "../managers/static-shortcut-manager.service";
-import { ShortcutListener } from "../shortcut-listener";
+import { ShortcutListener } from "../listeners/shortcut-listener";
 import { isValidLifehookFn } from "../utils/utils";
 
 export interface SubscriptionOptions {

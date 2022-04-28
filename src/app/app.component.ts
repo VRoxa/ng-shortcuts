@@ -1,31 +1,19 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ComponentRef, ElementRef, ViewChild } from '@angular/core';
 import { UseDelegateShortcuts } from 'projects/ng-shortcuts/src/lib/decorators/use-delegate-shortcut.decorator';
 import { UseShortcuts } from 'projects/ng-shortcuts/src/lib/decorators/use-shortcut.decorator';
 import { ExcludeFromShortcuts } from 'projects/ng-shortcuts/src/public-api';
 import { AppListener } from './listeners/app.listener';
 
-enum AppExtraEvents {
-  One,
-  Two
-}
-
-@UseDelegateShortcuts<AppComponent, AppExtraEvents>(
-  [
-    { keys: ['p'], event: AppExtraEvents.One },
-    { keys: ['shift', 'p'], event: AppExtraEvents.One },
-  ],
-  (component, event) => {
-    switch (event) {
-      case AppExtraEvents.One:
-        component.sayHello();
-        break;
-    
-      case AppExtraEvents.Two:
-        component.sayGoodbye();
-        break;
-    }
+@UseDelegateShortcuts<AppComponent>([
+  {
+    keys: ['p'],
+    handle: (component) => component.sayHello()
+  },
+  {
+    keys: ['shift', 'p'],
+    handle: (component) => component.sayGoodbye()
   }
-)
+])
 @UseShortcuts<AppComponent>(AppListener)
 @Component({
   selector: 'app-root',

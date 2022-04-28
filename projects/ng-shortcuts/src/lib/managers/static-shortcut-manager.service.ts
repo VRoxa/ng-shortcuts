@@ -1,5 +1,5 @@
 import { Subscription } from "rxjs";
-import { ShortcutListener } from "../shortcut-listener";
+import { ShortcutListener } from "../listeners/shortcut-listener";
 import { ShortcutManager } from "./shortcut-manager.service";
 
 export type ListenerConstructor<TComponent, TEvent = any> =
