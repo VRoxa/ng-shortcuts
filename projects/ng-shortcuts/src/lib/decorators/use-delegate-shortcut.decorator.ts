@@ -4,12 +4,18 @@ import { ShortcutListener } from "../listeners/shortcut-listener";
 import { SubscriptionOptions, UseShortcuts } from "./use-shortcut.decorator";
 import { DelegateShortcut } from "../delegate-shortcut.model";
 
+/**
+ * 
+ * @param delegateShortcuts List of delegate shortcuts that the component will listen to.
+ * @param options The subscription options.
+ * @returns The use shortcuts decorator.
+ */
 export function UseDelegateShortcuts<TComponent>(
   delegateShortcuts: DelegateShortcut<TComponent>[],
   options: SubscriptionOptions = { unsubscribe: true }
 ) {
   // Bind the DelegatedShortcutListener constructor function
-  // witb predefined arguments.
+  // with predefined arguments.
   // Get the result, which is a parameterless DelegatedShortcutListener constructor
   // that can be passed to the UseShortcuts decorator.
   // The DelegatedShortcutListener instance will be created by the UseShorcuts decorator.

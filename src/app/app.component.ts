@@ -32,7 +32,7 @@ export class AppComponent {
 
   @ExcludeFromShortcuts()
   @ViewChild('excluded')
-  excluded?: ElementRef<HTMLButtonElement>;
+  excluded?: ElementRef<HTMLInputElement>;
   
   public sayHello = () => {
     console.info('Hello 🙋‍♂️');

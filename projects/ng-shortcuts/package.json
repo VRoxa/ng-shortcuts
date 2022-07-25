@@ -1,6 +1,13 @@
 {
   "name": "ng-shortcuts",
   "version": "0.0.1",
+  "homepage": "https://github.com/VRoxa/ng-shortcuts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VRoxa/ng-shortcuts.git",
+    "directory": "projects/ng-shortcuts"
+  },
+  "author": "VRoxa",
   "peerDependencies": {
     "@angular/common": "^13.2.0",
     "@angular/core": "^13.2.0"
